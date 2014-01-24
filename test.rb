@@ -6,6 +6,17 @@ require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 
 Bundler.require(:default)
 
+configure do
+  enable :logging
+end
+
+before do
+  logger.datetime_format = "%Y/%m/%d @ %H:%M:%S "
+  logger.level = Logger::INFO
+end
+
+
 post '/v1/pushPackages/web.com.howaboutwe.howaboutwe' do
-  "Params are #{params.inspect}"
+  logger.info "Params are #{params.inspect}"
+  "OK"
 end
